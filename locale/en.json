@@ -1,0 +1,10 @@
+{
+  "HomePage": {
+    "title": "Hello world!"
+  },
+    "Languages": {
+    "fa": "فارسی",
+    "en": "English",
+    "ar": "العربية"
+  }
+}
