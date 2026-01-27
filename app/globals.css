@@ -2,9 +2,14 @@
 @import "tw-animate-css";
 @plugin "@iconify/tailwind4";
 
+/* تعریف حالت دارک مود */
 @custom-variant dark (&:is(.dark *));
 
+/* پیکربندی تم Tailwind v4 
+  شامل متغیرهای رنگی Shadcn و انیمیشن‌های سفارشی
+*/
 @theme inline {
+  /* --- Colors Mapping --- */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -38,12 +43,37 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  
+  /* Radius Variables */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* --- Custom Animations (Tailwind v4 Syntax) --- */
+  --animate-blob: blob 7s infinite;
+  --animate-pulse-signal: pulse-signal 2s ease-in-out infinite;
+  --animate-blink-error: blink-error 1.5s ease-in-out infinite;
+
+  @keyframes blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+  }
+
+  @keyframes pulse-signal {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes blink-error {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(5deg) scale(1.05); }
+  }
 }
 
+/* Shadcn UI Variables (OKLCH)
+*/
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -113,11 +143,40 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+/* Base Styles & Resets
+*/
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Utilities
+*/
+@layer utilities {
+  /* گرادینت مخصوص پروژه Zeteb */
+  .bg-zeteb-gradient {
+    @apply bg-gradient-to-br from-sky-100 via-purple-100 to-slate-100 dark:from-sky-950 dark:via-purple-950 dark:to-slate-950;
+  }
+
+  /* کلاس‌های کمکی برای انیمیشن‌ها */
+  .signal-path {
+    @apply animate-pulse-signal;
+  }
+
+  .error-line {
+    @apply animate-blink-error origin-center;
+  }
+
+  /* تاخیرهای انیمیشن برای SVG ها */
+  .signal-path:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .signal-path:nth-child(3) {
+    animation-delay: 0.4s;
   }
 }
