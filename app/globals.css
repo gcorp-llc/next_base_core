@@ -3,13 +3,13 @@
 @plugin "@iconify/tailwind4";
 
 /* ────────────────────────────────────────────────
-   Theme Definition – Tailwind v4 CSS-first approach
+   Theme Definition – Tailwind v4 + OKLCH + Glass iOS style
    ──────────────────────────────────────────────── */
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* Shadcn color mapping – مستقیم به متغیرهای ریشه اشاره می‌کند */
+  /* Shadcn-like color variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -29,186 +29,175 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
 
-  /* Sidebar اختصاصی پروژه شما */
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-
-  /* Radius variants */
+  /* Radius */
+  --radius: 0.625rem;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* انیمیشن‌های سفارشی پروژه Zeteb */
-  --animate-blob: blob 7s infinite;
-  --animate-pulse-signal: pulse-signal 2s ease-in-out infinite;
-  --animate-blink-error: blink-error 1.5s ease-in-out infinite;
-
-  @keyframes blob {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(30px, -50px) scale(1.1); }
-    66% { transform: translate(-20px, 20px) scale(0.9); }
-  }
-
-  @keyframes pulse-signal {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-  }
-
-  @keyframes blink-error {
-    0%, 100% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(5deg) scale(1.05); }
-  }
+  /* انیمیشن‌های پروژه */
+  --animate-navbar-in: navbarFadeIn 0.9s cubic-bezier(0.34,1.56,0.64,1) forwards;
 }
 
 /* ────────────────────────────────────────────────
-   Root & Dark Mode Variables (OKLCH – shadcn style)
+   Root & Dark Mode – OKLCH colors
    ──────────────────────────────────────────────── */
 :root {
-  --radius: 0.625rem;
+  --background: oklch(0.985 0.005 260);
+  --foreground: oklch(0.15 0.04 260);
 
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(0.99 0.005 260);
+  --card-foreground: oklch(0.15 0.04 260);
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(0.99 0.005 260);
+  --popover-foreground: oklch(0.15 0.04 260);
 
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.65 0.15 260);
+  --primary-foreground: oklch(0.99 0.01 260);
 
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.96 0.01 260);
+  --secondary-foreground: oklch(0.22 0.04 260);
 
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.96 0.008 260);
+  --muted-foreground: oklch(0.60 0.04 260);
 
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.96 0.01 260);
+  --accent-foreground: oklch(0.22 0.04 260);
 
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.60 0.22 30);
+  --destructive-foreground: oklch(0.99 0.01 260);
 
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.92 0.015 260 / 0.6);
+  --input: oklch(0.92 0.015 260 / 0.6);
+  --ring: oklch(0.70 0.08 260);
 
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-
-  /* Sidebar colors */
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  /* Glass variables */
+  --glass-bg: rgba(255, 255, 255, 0.10);
+  --glass-border: rgba(255, 255, 255, 0.22);
+  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.10);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
+  --background: oklch(0.14 0.04 260);
+  --foreground: oklch(0.98 0.005 260);
 
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.22 0.04 260);
+  --card-foreground: oklch(0.98 0.005 260);
 
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.22 0.04 260);
+  --popover-foreground: oklch(0.98 0.005 260);
 
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
+  --primary: oklch(0.78 0.12 260);
+  --primary-foreground: oklch(0.14 0.04 260);
 
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.28 0.04 260);
+  --secondary-foreground: oklch(0.98 0.005 260);
 
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
+  --muted: oklch(0.28 0.04 260);
+  --muted-foreground: oklch(0.70 0.04 260);
 
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
+  --accent: oklch(0.28 0.04 260);
+  --accent-foreground: oklch(0.98 0.005 260);
 
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.70 0.20 25);
+  --destructive-foreground: oklch(0.98 0.005 260);
 
-  --border: oklch(1 0 0 / 0.1);
-  --input: oklch(1 0 0 / 0.15);
-  --ring: oklch(0.551 0.027 264.364);
+  --border: oklch(1 0 0 / 0.12);
+  --input: oklch(1 0 0 / 0.16);
+  --ring: oklch(0.60 0.08 260);
 
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-
-  /* Sidebar dark overrides */
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 0.1);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* Glass dark mode */
+  --glass-bg: rgba(30, 30, 45, 0.38);
+  --glass-border: rgba(255, 255, 255, 0.11);
+  --glass-shadow: 0 12px 48px rgba(0, 0, 0, 0.55);
 }
 
 /* ────────────────────────────────────────────────
-   Base Layer – Resets and global styles
+   Glassmorphism Utilities – iOS 18 / Vision Pro inspired
+   ──────────────────────────────────────────────── */
+@layer utilities {
+  .glass-nav {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    transition: all 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .glass-nav:hover {
+    box-shadow: 0 16px 60px rgba(0, 0, 0, 0.18);
+  }
+
+  .dark .glass-nav:hover {
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.65);
+  }
+
+  .glass-item {
+    @apply relative px-4 py-2.5 rounded-xl text-foreground/90 hover:text-foreground
+           transition-all duration-400 ease-out overflow-hidden;
+
+    &::before {
+      content: '';
+      @apply absolute inset-0 bg-white/6 dark:bg-white/10 opacity-0 scale-90 rounded-xl;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: -1;
+    }
+
+    &:hover::before {
+      @apply opacity-100 scale-105;
+    }
+
+    &:hover {
+      @apply scale-[1.035] translate-y-[-1px];
+    }
+
+    &:active {
+      @apply scale-[0.97] translate-y-[1px];
+    }
+  }
+
+  /* Fade-in انیمیشن هنگام لود navbar */
+  @keyframes navbarFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-24px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-navbar-in {
+    animation: var(--animate-navbar-in);
+  }
+
+  /* نسخه سبک‌تر برای موبایل */
+  @media (max-width: 1023px) {
+    .glass-nav {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: color-mix(in srgb, var(--glass-bg) 90%, transparent);
+    }
+  }
+}
+
+/* ────────────────────────────────────────────────
+   Base Layer
    ──────────────────────────────────────────────── */
 @layer base {
   * {
     border-color: var(--border);
-    outline-color: color-mix(in oklch, var(--ring) 50%, transparent);
   }
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* اگر fontهای Geist را لود کردی، می‌توانی fallback اضافه کنی */
   :root {
-    font-family: var(--font-sans), system-ui, sans-serif;
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   }
-}
-
-/* ────────────────────────────────────────────────
-   Custom Utilities – مخصوص پروژه Zeteb
-   ──────────────────────────────────────────────── */
-@layer utilities {
-  .bg-zeteb-gradient {
-    @apply bg-gradient-to-br from-sky-100 via-purple-100 to-slate-100
-           dark:from-sky-950 dark:via-purple-950 dark:to-slate-950;
-  }
-
-  .signal-path {
-    @apply animate-pulse-signal;
-  }
-
-  .error-line {
-    @apply animate-blink-error origin-center;
-  }
-
-  /* تاخیر برای المان‌های متوالی (مثل SVG pathها) */
-  .signal-path:nth-child(2) { animation-delay: 0.2s; }
-  .signal-path:nth-child(3) { animation-delay: 0.4s; }
-  .signal-path:nth-child(4) { animation-delay: 0.6s; }
 }

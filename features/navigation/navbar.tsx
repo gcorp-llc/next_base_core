@@ -39,42 +39,53 @@ export const Navbar = () => {
       href: "/profile",
     },
   ];
+
   return (
-    <nav className="sticky top-0 z-50 m-2 rounded-2xl bg-zeteb-gradient shadow-md backdrop-blur-md border border-white/20">
-      <div className="container mx-auto flex items-center justify-between p-2 gap-4">
-        
-        {/* بخش راست: منو، لوگو و لینک‌های اصلی */}
-        <div className="flex items-center gap-4">
-          <NavMobile />
-          <NavLogo />
-         
-          {/* جداکننده عمودی کوچک (اختیاری برای زیبایی) */}
-          <div className="hidden xl:block w-px h-6 bg-slate-300/50 mx-2" />
-          
-          {/* لینک‌های ناوبری دسکتاپ */}
-           {navItems.map((item) => (
-                    <NavItem
-                      key={item.href}
-                      icon={item.icon}
-                      label={item.label}
-                      href={item.href}
-                      isActive={pathname === item.href}
-                    />
-                  ))}
-          
-        </div>
+    <nav
+      className={`
+        glass-nav
+        animate-navbar-in
+        sticky top-0 z-50 mx-2 mt-2
+        rounded-2xl
+      `}
+    >
+      <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
+        <div className="flex h-14 sm:h-16 items-center justify-between gap-4">
 
-        {/* بخش وسط: جستجو */}
-        <div className="hidden lg:block flex-1 max-w-md mx-2">
-          
-        </div>
+          {/* Left side – Mobile menu + Logo + Desktop links */}
+          <div className="flex items-center gap-3 sm:gap-5 flex-1 lg:flex-none">
+            <div className="lg:hidden -ml-1">
+              <NavMobile />
+            </div>
 
-        {/* بخش چپ: اکشن‌ها (پروفایل و اعلان) */}
-        <div className="flex items-center">
-           <NavSearch />
-          <NavActions />
-        </div>
+            <NavLogo />
 
+            <div className="hidden lg:block w-px h-8 bg-white/15 dark:bg-white/10 mx-3" />
+
+            <div className="hidden lg:flex lg:items-center lg:gap-1.5">
+              {navItems.map((item) => (
+                <NavItem
+                  key={item.href}
+                  className="glass-item"
+                  icon={item.icon}
+                  label={item.label}
+                  href={item.href}
+                  isActive={pathname === item.href}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Center – Search bar (appears from md onwards) */}
+          <div className="hidden md:block flex-1 max-w-xl lg:max-w-2xl mx-2 lg:mx-6">
+            <NavSearch />
+          </div>
+
+          {/* Right side – Actions (profile, notifications, etc.) */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <NavActions />
+          </div>
+        </div>
       </div>
     </nav>
   );

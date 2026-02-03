@@ -37,11 +37,18 @@ export const MobileFooter = () => {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-3 md:hidden">
-      {/* استفاده از bg-zeteb-gradient برای ست شدن با نوبار 
-          و border-white/30 برای جدا شدن از پس‌زمینه
-      */}
-      <div className="mx-auto max-w-lg flex items-center justify-around rounded-full border border-white/30 bg-zeteb-gradient py-2 shadow-2xl backdrop-blur-2xl">
+    <div className="fixed bottom-0 left-0 right-0 z-50 p-2 pb-[env(safe-area-inset-bottom)] md:hidden">
+      <div
+        className={`
+          glass-nav
+          animate-navbar-in  // انیمیشن ورود نرم مشابه navbar
+          mx-auto max-w-sm flex items-center justify-around
+          rounded-full border border-white/20 dark:border-white/10
+          bg-zeteb-gradient-glass py-2.5 px-3
+          shadow-xl backdrop-blur-xl
+          transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
+        `}
+      >
         {navItems.map((item) => (
           <FooterItem
             key={item.href}
@@ -49,6 +56,7 @@ export const MobileFooter = () => {
             label={item.label}
             href={item.href}
             isActive={pathname === item.href}
+            className="glass-item"  // هماهنگی با تم شیشه‌ای برای هر آیتم
           />
         ))}
       </div>

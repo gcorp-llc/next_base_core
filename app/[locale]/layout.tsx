@@ -74,33 +74,18 @@ interface RootLayoutProps {
   // params?: { locale?: string };
 }
 
-<<<<<<< HEAD
-export default async function RootLayout({ children }: RootLayoutProps) {
-  // اگر از ساختار app/[locale]/layout.tsx استفاده می‌کنی، این خطوط را فعال کن
-  // const { locale } = params ?? { locale: "fa" };
-  // if (!["fa", "en"].includes(locale)) notFound();
 
-=======
 export default async function RootLayout({
   children,
   params,
 }: RootLayoutProps & { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
->>>>>>> f6393b93bd748f6421155fd9eb16974abfb9c224
+
   const messages = await getMessages();
 
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
-<<<<<<< HEAD
-  return (
-    <html
-      lang="fa"
-      dir="rtl"
-      className={shabnam.variable}
-      // suppressHydrationWarning فقط وقتی واقعاً لازم است (مثلاً theme toggle سمت کلاینت)
-      // suppressHydrationWarning
-    >
-=======
+
   const direction = locale === "fa" || locale === "ar" ? "rtl" : "ltr";
 
   const organizationSchema = {
@@ -113,7 +98,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} dir={direction} suppressHydrationWarning>
->>>>>>> f6393b93bd748f6421155fd9eb16974abfb9c224
+
       {gaId && <GoogleAnalytics gaId={gaId} />}
 
       <head>
