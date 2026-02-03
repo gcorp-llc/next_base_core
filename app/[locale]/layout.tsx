@@ -3,31 +3,55 @@ import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+
 import "../globals.css";
 import { Navbar } from "@/components/shared/navbar/navbar";
 import { MobileFooter } from "@/components/shared/footer/mobile-footer";
 
-// تعریف فونت بدنه
+// ────────────────────────────────────────────────
+// فونت‌ها – بهترین روش: ترکیب وزن‌ها در یک variable font یا حداقل تعریف دقیق
+// ────────────────────────────────────────────────
 const shabnam = localFont({
-  src: "../../public/fonts/Shabnam.woff2",
-  variable: "--font-body",
-  weight: "400",
+  src: [
+    {
+      path: "../../public/fonts/Shabnam.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Shabnam-Bold-FD-WOL.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    // اگر فایل‌های Italic یا وزن‌های دیگر داری اضافه کن
+    // {
+    //   path: ".../Shabnam-Medium.woff2",
+    //   weight: "500",
+    //   style: "normal",
+    // },
+  ],
+  variable: "--font-shabnam",
   display: "swap",
-});
-
-// تعریف فونت عنوان‌ها
-const shabnamBold = localFont({
-  src: "../../public/fonts/Shabnam-Bold-FD-WOL.woff2",
-  variable: "--font-heading",
-  weight: "700",
-  display: "swap",
+  preload: true,          // مهم برای عملکرد اولیه
+  fallback: ["system-ui", "sans-serif"], // fallback خوب برای RTL
 });
 
 export const metadata: Metadata = {
-  title: "Zeteb",
-  description: "Your application description",
+  title: {
+    default: "Zeteb",
+    template: "%s | Zeteb", // بهترین تمرین برای SEO
+  },
+  description: "توضیحات برنامه شما – می‌توانید بعداً داینامیک کنید",
   icons: {
     icon: "/favicon.ico",
+    // بهتر است apple-touch-icon و manifest هم اضافه شود
+    apple: "/apple-touch-icon.png",
+  },
+  // برای پروژه‌های فارسی خیلی مهم است
+  alternates: {
+    canonical: "/",
+    // اگر چندزبانه شدید بعداً languages اضافه کنید
   },
 };
 
@@ -36,29 +60,53 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
+  // برای موبایل‌های مدرن بهتر است
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#111111" },
+  ],
 };
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  // اگر از [locale] در مسیر استفاده می‌کنی → params اضافه شود
+  // params?: { locale?: string };
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
+  // اگر از ساختار app/[locale]/layout.tsx استفاده می‌کنی، این خطوط را فعال کن
+  // const { locale } = params ?? { locale: "fa" };
+  // if (!["fa", "en"].includes(locale)) notFound();
+
   const messages = await getMessages();
+
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
-    <html lang="fa" dir="rtl" suppressHydrationWarning>
+    <html
+      lang="fa"
+      dir="rtl"
+      className={shabnam.variable}
+      // suppressHydrationWarning فقط وقتی واقعاً لازم است (مثلاً theme toggle سمت کلاینت)
+      // suppressHydrationWarning
+    >
       {gaId && <GoogleAnalytics gaId={gaId} />}
+
       <head>
         <meta charSet="utf-8" />
-        <meta name="theme-color" content="#eee" />
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        {/* theme-color بهتر است در viewport مدیریت شود – اما می‌توانی نگه داری */}
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
+
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        {/* پیشنهاد: اضافه کردن preconnect برای فونت اگر از CDN بود */}
+        {/* <link rel="preconnect" href="https://fonts..." /> */}
       </head>
-      <body
-        className={`${shabnam.variable} ${shabnamBold.variable} antialiased `}
-      >
+
+      <body className="antialiased min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>
           <Navbar />
-          {children}
+          <main className="flex-1">{children}</main>
           <MobileFooter />
         </NextIntlClientProvider>
       </body>
