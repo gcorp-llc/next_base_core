@@ -1,12 +1,12 @@
 import { getScyllaDBClient } from "@/lib/db/scylladb";
-import { DBAdapter, Where } from "@better-auth/core/db";
+import { type Where } from "@better-auth/core/db/adapter";
 
 /**
  * Better-Auth Adapter for ScyllaDB / Cassandra.
  */
 export const scyllaAdapter = {
     id: "scylladb",
-    async create({ model, data }: { model: string; data: any }) {
+    async create({ model, data }: { model: string; data: Record<string, unknown> }) {
         const fields = Object.keys(data);
         const placeholders = fields.map(() => "?").join(", ");
         const columns = fields.map(f => `"${f}"`).join(", ");
@@ -34,7 +34,7 @@ export const scyllaAdapter = {
         offset?: number;
     }) {
         let query = `SELECT * FROM "${model}"`;
-        let values: any[] = [];
+        let values: unknown[] = [];
         if (where && where.length) {
             const transformed = transformWhere(where);
             query += ` ${transformed.clause}`;
@@ -67,7 +67,7 @@ export const scyllaAdapter = {
         return rows;
     },
 
-    async update({ model, where, update }: { model: string; where: Where[]; update: any }) {
+    async update({ model, where, update }: { model: string; where: Where[]; update: Record<string, unknown> }) {
         const { clause, values: whereValues } = transformWhere(where);
         const updateFields = Object.keys(update);
         const setClause = updateFields.map(f => `"${f}" = ?`).join(", ");
@@ -81,7 +81,7 @@ export const scyllaAdapter = {
         return this.findOne({ model, where });
     },
 
-    async updateMany({ model, where, update }: { model: string; where: Where[]; update: any }) {
+    async updateMany({ model, where, update }: { model: string; where: Where[]; update: Record<string, unknown> }) {
         const { clause, values: whereValues } = transformWhere(where);
         const updateFields = Object.keys(update);
         const setClause = updateFields.map(f => `"${f}" = ?`).join(", ");
@@ -110,7 +110,7 @@ export const scyllaAdapter = {
 
     async count({ model, where }: { model: string; where?: Where[] }) {
         let query = `SELECT COUNT(*) FROM "${model}"`;
-        let values: any[] = [];
+        let values: unknown[] = [];
         if (where && where.length) {
             const transformed = transformWhere(where);
             query += ` ${transformed.clause}`;
@@ -121,11 +121,12 @@ export const scyllaAdapter = {
         const firstRow = result.first();
         if (!firstRow) return 0;
         // In ScyllaDB COUNT(*) might return a column named 'count' or 'system.count'
-        const countValue = firstRow['count'] || firstRow.get?.('count');
+        const row = firstRow as Record<string, unknown> & { get?: (name: string) => unknown };
+        const countValue = row['count'] || (typeof row.get === "function" ? row.get("count") : null);
         return parseInt(countValue?.toString() || "0");
     },
 
-    async transaction(callback: any) {
+    async transaction(callback: (adapter: unknown) => Promise<unknown>) {
         // ScyllaDB does not support ACID transactions across multiple tables/partitions.
         // We fallback to sequential execution as per Better-Auth recommendation.
         return callback(this);
@@ -135,7 +136,7 @@ export const scyllaAdapter = {
 function transformWhere(where: Where[]) {
     if (!where || !where.length) return { clause: "", values: [] };
     const clauses = where.map(w => {
-        let operator = w.operator === "eq" || !w.operator ? "=" : w.operator;
+        const operator = w.operator === "eq" || !w.operator ? "=" : w.operator;
         if (operator === "in") return `"${w.field}" IN ?`;
         if (operator === "ne") {
             // ScyllaDB doesn't support != directly in many cases, often needs ALLOW FILTERING

@@ -44,6 +44,11 @@
     "verifyCode": "Verify and Login",
     "verifying": "Verifying...",
     "changePhone": "Change Phone Number",
-    "orContinueWith": "or continue with"
+    "orContinueWith": "or continue with",
+    "phoneMinLength": "Phone number must be at least 11 digits",
+    "phoneMaxLength": "Phone number must be at most 11 digits",
+    "phoneInvalid": "Invalid phone number",
+    "otpLength": "OTP must be 6 digits",
+    "otpInvalid": "OTP must contain only numbers"
   }
 }
