@@ -45,36 +45,36 @@ export const NavMobile = () => {
 
       <SheetContent
         side={side}
-        className="w-80 border-l border-white/20 bg-white/10 p-0 backdrop-blur-2xl dark:bg-slate-900/50"
+        className="w-80 glass !rounded-none p-0"
       >
         <SheetTitle className="sr-only">{t("menu")}</SheetTitle>
 
-        <div className="flex h-full flex-col p-4 text-white">
-          <div className="mb-6 px-2 text-2xl font-black tracking-tighter text-white drop-shadow-md">
-            ZETEB MENU
+        <div className="flex h-full flex-col p-6">
+          <div className="mb-8 px-2 text-3xl font-black tracking-tighter text-primary">
+            ZETEB
           </div>
 
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/20 transition-all text-white/90 hover:text-white hover:shadow-lg"
+                  className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group"
                 >
-                  <span className={`${item.icon} w-6 h-6`}></span>
-                  <span className="font-bold">{item.name}</span>
+                  <span className={`${item.icon} w-7 h-7 text-primary/80 group-hover:text-primary transition-colors`}></span>
+                  <span className="font-bold text-lg text-foreground/80 group-hover:text-foreground">{item.name}</span>
                 </Link>
               </li>
             ))}
           </ul>
 
-          <div className="mt-auto border-t border-white/20 pt-4">
+          <div className="mt-auto border-t border-border/50 pt-6">
             <Link
               href="/logout"
-              className="flex items-center gap-3 p-3 rounded-xl hover:bg-red-500/20 transition-all text-white/80 hover:text-red-300"
+              className="flex items-center gap-4 p-4 rounded-2xl hover:bg-destructive/10 transition-all group"
             >
-              <span className="icon-[solar--logout-3-bold-duotone] w-6 h-6"></span>
-              <span className="font-bold">{t("logout")}</span>
+              <span className="icon-[solar--logout-3-bold-duotone] w-7 h-7 text-destructive/70 group-hover:text-destructive"></span>
+              <span className="font-bold text-lg text-destructive/70 group-hover:text-destructive">{t("logout")}</span>
             </Link>
           </div>
         </div>

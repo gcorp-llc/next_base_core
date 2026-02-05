@@ -7,43 +7,33 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { NavUserProfileCard } from "@/features/user/components/nav-user-profile-card";
+import { ProfileMenu } from "@/features/user/components/profile-menu";
 import Image from "next/image";
 
 export const NavActions = () => {
   return (
     <div className="flex items-center gap-2 rtl:space-x-reverse">
       
+      {/* Search Toggle (Optional for mobile) */}
+      <button className="md:hidden p-2 rounded-full hover:bg-white/10 transition-colors">
+        <span className="icon-[solar--magnifer-bold-duotone] w-6 h-6 text-foreground/70" />
+      </button>
   
-      {/* پروفایل دسکتاپ */}
-      <div className="hidden lg:block">
+      {/* Desktop & Mobile Profile */}
+      <div>
         <DropdownMenu dir="rtl">
             <DropdownMenuTrigger asChild>
-                <div className="flex items-center gap-3 cursor-pointer p-1 pr-3 pl-1 rounded-xl hover:bg-white/20 transition-all select-none border border-transparent hover:border-white/20">
-                    
-                    <Avatar className="h-10 w-10 ring-2 ring-purple-500/30">
-                        <AvatarImage src="/favicon.png" />
-                        <AvatarFallback>HE</AvatarFallback>
+                <div className="flex items-center cursor-pointer rounded-full p-0.5 ring-2 ring-primary/20 hover:ring-primary/40 transition-all select-none">
+                    <Avatar className="h-9 w-9">
+                        <AvatarImage src="/favicon.ico" />
+                        <AvatarFallback>JD</AvatarFallback>
                     </Avatar>
                 </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-96 mt-2 bg-white/80 backdrop-blur-xl border-white/40">
-           <NavUserProfileCard/>
+            <DropdownMenuContent className="w-64 mt-2 glass !rounded-2xl p-0 overflow-hidden" align="end">
+              <ProfileMenu />
             </DropdownMenuContent>
         </DropdownMenu>
-      </div>
-
-      {/* آواتار موبایل (فقط دایره عکس) */}
-      <div className="block lg:hidden">
-        <div className="w-10 h-10 rounded-full ring-2 ring-purple-500 overflow-hidden p-0.5">
-          <Image
-            src="/favicon.png"
-            alt="Profile"
-            width={40}
-            height={40}
-            className="w-full h-full object-cover rounded-full"
-          />
-        </div>
       </div>
 
     </div>

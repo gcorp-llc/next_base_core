@@ -44,12 +44,12 @@ export const Navbar = () => {
     <nav
       className={`
         glass-nav
-        animate-navbar-in
-        sticky top-0 z-50 mx-2 mt-2
-        rounded-2xl
+        animate-ios-in
+        sticky top-4 z-50 mx-4
+        rounded-[2rem]
       `}
     >
-      <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between gap-4">
 
           {/* Left side – Mobile menu + Logo + Desktop links */}

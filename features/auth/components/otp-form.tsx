@@ -85,12 +85,12 @@ export const OtpForm = ({ phoneNumber, onBack }: OtpFormProps) => {
             {digits.map((digit, i) => (
               <div
                 key={i}
-                className={`w-12 h-16 sm:w-14 sm:h-20 flex items-center justify-center rounded-2xl border-2 transition-all text-2xl sm:text-3xl font-black ${
+                className={`w-12 h-16 sm:w-14 sm:h-20 flex items-center justify-center rounded-2xl border-2 transition-all text-2xl sm:text-3xl font-black glass ${
                   otpValue.length === i
-                    ? "border-primary bg-primary/5 shadow-[0_0_20px_rgba(var(--primary),0.2)]"
+                    ? "border-primary bg-primary/10"
                     : digit !== " "
-                    ? "border-primary/50 bg-slate-50 dark:bg-slate-800"
-                    : "border-slate-200 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-800/30"
+                    ? "border-primary/50 bg-white/10"
+                    : "border-white/10 bg-white/5"
                 }`}
               >
                 {digit !== " " ? digit : ""}
@@ -117,7 +117,7 @@ export const OtpForm = ({ phoneNumber, onBack }: OtpFormProps) => {
           <Button
             type="submit"
             disabled={isLoading || otpValue.length !== 6}
-            className="w-full h-14 rounded-2xl bg-linear-to-br from-primary to-purple-600 text-white text-lg font-bold shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all border-none"
+            className="w-full h-14 rounded-2xl bg-ios-gradient text-white text-lg font-bold shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all border-none"
           >
             {isLoading ? (
               <span className="flex items-center gap-2">

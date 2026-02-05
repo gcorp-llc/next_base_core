@@ -22,7 +22,7 @@ export const SocialAuth = () => {
           <span className="w-full border-t border-slate-200 dark:border-slate-800"></span>
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-white dark:bg-slate-900 px-4 text-slate-400 font-bold tracking-wider">
+          <span className="bg-transparent px-4 text-white/50 font-bold tracking-wider">
             {t("orContinueWith")}
           </span>
         </div>
@@ -33,7 +33,7 @@ export const SocialAuth = () => {
           <Button
             variant="outline"
             onClick={() => handleSocialLogin("google")}
-            className="w-full h-14 rounded-2xl border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all gap-3 font-bold text-slate-700 dark:text-slate-300"
+            className="w-full h-14 rounded-2xl glass !bg-white/5 border-white/10 hover:bg-white/10 transition-all gap-3 font-bold text-white/80"
           >
             <span className="icon-[logos--google-icon] w-5 h-5" />
             Google
@@ -43,7 +43,7 @@ export const SocialAuth = () => {
           <Button
             variant="outline"
             onClick={() => handleSocialLogin("github")}
-            className="w-full h-14 rounded-2xl border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all gap-3 font-bold text-slate-700 dark:text-slate-300"
+            className="w-full h-14 rounded-2xl glass !bg-white/5 border-white/10 hover:bg-white/10 transition-all gap-3 font-bold text-white/80"
           >
             <span className="icon-[logos--github-icon] w-5 h-5" />
             GitHub

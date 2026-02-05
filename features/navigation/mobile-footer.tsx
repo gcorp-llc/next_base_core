@@ -37,16 +37,14 @@ export const MobileFooter = () => {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-2 pb-[env(safe-area-inset-bottom)] md:hidden">
+    <div className="fixed bottom-6 left-6 right-6 z-50 md:hidden">
       <div
         className={`
-          glass-nav
-          animate-navbar-in  // انیمیشن ورود نرم مشابه navbar
+          glass
+          animate-ios-in
           mx-auto max-w-sm flex items-center justify-around
-          rounded-full border border-white/20 dark:border-white/10
-          bg-zeteb-gradient-glass py-2.5 px-3
-          shadow-xl backdrop-blur-xl
-          transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
+          rounded-[2.5rem] py-3 px-4
+          shadow-2xl
         `}
       >
         {navItems.map((item) => (

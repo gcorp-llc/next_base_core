@@ -1,7 +1,28 @@
 {
   "HomePage": {
-    "title": "Hello World",
-    "activeLanguage": "Active Language"
+    "title": "Zeteb - Smart Health Platform",
+    "heroTitle": "Easy Access to Top Doctors",
+    "heroSubtitle": "Online appointments, phone and text consultations with top specialists in the shortest possible time.",
+    "searchPlaceholder": "Search doctor, specialty or disease...",
+    "specialties": "Popular Specialties",
+    "featuredDoctors": "Recommended Doctors",
+    "viewAll": "View All",
+    "howItWorks": "How It Works?",
+    "step1": "Search Doctor",
+    "step1Desc": "Search by specialty, location or doctor name.",
+    "step2": "Choose Time",
+    "step2Desc": "Select the best available time from the doctor.",
+    "step3": "Get Appointment",
+    "step3Desc": "Finalize your appointment and receive confirmation SMS.",
+    "bookNow": "Book Now",
+    "reviews": "{count} reviews"
+  },
+  "ProfilePage": {
+    "editProfile": "Edit Profile",
+    "userInfo": "User Information",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone Number"
   },
   "Languages": {
     "fa": "Persian",
@@ -32,6 +53,13 @@
       "realtime": "Real-time Collaboration Tools"
     }
   },
+  "ProfileMenu": {
+    "dashboard": "Dashboard",
+    "appointments": "My Appointments",
+    "medicalHistory": "Medical History",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
   "Auth": {
     "title": "Login to Zeteb",
     "welcome": "Welcome back",
@@ -45,6 +73,7 @@
     "verifying": "Verifying...",
     "changePhone": "Change Phone Number",
     "orContinueWith": "or continue with",
+    "copyright": "© {year} Zeteb. All rights reserved.",
     "phoneMinLength": "Phone number must be at least 11 digits",
     "phoneMaxLength": "Phone number must be at most 11 digits",
     "phoneInvalid": "Invalid phone number",
