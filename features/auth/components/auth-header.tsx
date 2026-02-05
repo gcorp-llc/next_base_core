@@ -16,7 +16,7 @@ export const AuthHeader = ({ step }: AuthHeaderProps) => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         key={step === "phone" ? "welcome" : "verify"}
-        className="text-4xl font-black text-slate-900 dark:text-white mb-3 tracking-tight"
+        className="text-4xl font-black text-white mb-3 tracking-tight"
       >
         {step === "phone" ? t("welcome") : t("verifyCode")}
       </motion.h1>
@@ -24,7 +24,7 @@ export const AuthHeader = ({ step }: AuthHeaderProps) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="text-slate-500 dark:text-slate-400 font-medium text-lg"
+        className="text-white/60 font-medium text-lg"
       >
         {step === "phone" ? t("enterPhone") : t("enterOtp")}
       </motion.p>

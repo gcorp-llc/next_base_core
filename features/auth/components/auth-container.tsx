@@ -25,7 +25,7 @@ export const AuthContainer = () => {
       {/* Glow Effect */}
       <div className="absolute -inset-1 bg-linear-to-r from-primary to-purple-600 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
 
-      <div className="relative bg-white/80 dark:bg-slate-950/80 backdrop-blur-2xl rounded-[2.3rem] p-8 md:p-12 border border-white/20 dark:border-slate-800 shadow-2xl overflow-hidden">
+      <div className="relative glass-card !rounded-[2.3rem] p-8 md:p-12 overflow-hidden">
         <AuthHeader step={step} />
 
         <div className="relative min-h-[300px]">

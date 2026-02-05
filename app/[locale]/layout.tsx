@@ -117,9 +117,7 @@ export default async function RootLayout({
       <body className="antialiased min-h-screen flex flex-col">
         <NextIntlClientProvider messages={messages}>
           <Toaster richColors position="top-center" />
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <MobileFooter />
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>
