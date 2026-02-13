@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PostList } from "@/features/feed/components/post-list";
-import { CreatePost } from "@/features/social/components/create-post";
+import { CreatePost } from "@/features/posts/components/create-post";
 import { FollowButton } from "@/features/social/components/follow-button";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
