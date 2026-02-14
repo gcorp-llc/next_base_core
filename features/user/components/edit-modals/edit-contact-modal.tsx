@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { useUserStore } from "../../lib/store";
 import { useState } from "react";
 import { toast } from "sonner";
+import { profileApi } from "../../api/profile";
 
 export function EditContactModal({ initialData }: { initialData: any }) {
   const { activeModal, closeModal } = useUserStore();
@@ -23,18 +24,9 @@ export function EditContactModal({ initialData }: { initialData: any }) {
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/user/profile", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          addresses: [data.address], // Matching ScyllaDB list<text>
-          // Note: we don't have a direct 'phone' in user_profile yet,
-          // but we can store it in addresses or elsewhere if needed.
-          // For now let's just update addresses.
-        }),
+      await profileApi.updateProfile({
+        addresses: [data.address],
       });
-
-      if (!response.ok) throw new Error("Failed to update");
 
       toast.success("اطلاعات تماس بروزرسانی شد");
       closeModal();

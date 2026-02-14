@@ -52,7 +52,7 @@ export function ArticleEditor() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-20">
-      <div className="flex items-center justify-between sticky top-20 z-10 glass-nav p-4 rounded-[2rem] border border-white/10">
+      <div className="flex items-center justify-between sticky top-20 z-10 glass-nav backdrop-blur-3xl bg-white/40 dark:bg-black/40 p-4 rounded-[2rem] border border-white/20">
         <div className="flex items-center gap-3">
             <Avatar className="w-10 h-10 rounded-lg">
                 <AvatarImage src={session?.user?.image || "/favicon.png"} />
@@ -75,7 +75,7 @@ export function ArticleEditor() {
         </div>
       </div>
 
-      <div className="glass-card !p-8 space-y-6 min-h-screen">
+      <div className="glass-card !bg-white/70 dark:!bg-black/70 backdrop-blur-3xl !p-8 space-y-6 min-h-screen border border-white/20">
         <input
             type="text"
             placeholder={t("articleTitlePlaceholder")}

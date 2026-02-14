@@ -4,10 +4,12 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { authClient } from "@/features/auth/lib/auth-client";
+import { authApi } from "@/features/auth/api";
+import { useTheme } from "next-themes";
 
 export const ProfileMenu = () => {
-  const { data: session } = authClient.useSession();
+  const { data: session } = authApi.getSession();
+  const { theme, setTheme } = useTheme();
   const t = useTranslations("ProfileMenu");
   const locale = useLocale();
   const router = useRouter();
@@ -51,30 +53,68 @@ export const ProfileMenu = () => {
            <span className="icon-[solar--help-bold-duotone] w-5 h-5 text-primary/70 group-hover:text-primary" />
            <span className="text-sm font-bold text-foreground/80">{t("help")}</span>
         </Link>
-        <div className="px-3 py-2">
-           <div className="flex items-center gap-3 mb-2">
-              <span className="icon-[solar--global-bold-duotone] w-5 h-5 text-primary/70" />
-              <span className="text-sm font-bold text-foreground/80">{t("language")}</span>
+        <Link href="/clinics/manage" className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-primary/10 transition-colors group border border-primary/20 mt-1">
+           <span className="icon-[solar--hospital-bold-duotone] w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+           <span className="text-sm font-black text-primary">مدیریت کلینیک و مطب</span>
+        </Link>
+        <div className="px-3 py-2 space-y-4">
+           {/* Language Switcher */}
+           <div>
+            <div className="flex items-center gap-3 mb-2">
+                <span className="icon-[solar--global-bold-duotone] w-5 h-5 text-primary/70" />
+                <span className="text-sm font-bold text-foreground/80">{t("language")}</span>
+            </div>
+            <div className="flex gap-2">
+                <button
+                  onClick={() => handleLanguageChange("fa")}
+                  className={`flex-1 text-[10px] py-1.5 rounded-lg border transition-all font-bold ${locale === "fa" ? "bg-primary text-white border-primary shadow-lg shadow-primary/20" : "border-white/10 hover:bg-white/5"}`}
+                >
+                  فارسی
+                </button>
+                <button
+                  onClick={() => handleLanguageChange("en")}
+                  className={`flex-1 text-[10px] py-1.5 rounded-lg border transition-all font-bold ${locale === "en" ? "bg-primary text-white border-primary shadow-lg shadow-primary/20" : "border-white/10 hover:bg-white/5"}`}
+                >
+                  English
+                </button>
+                <button
+                  onClick={() => handleLanguageChange("ar")}
+                  className={`flex-1 text-[10px] py-1.5 rounded-lg border transition-all font-bold ${locale === "ar" ? "bg-primary text-white border-primary shadow-lg shadow-primary/20" : "border-white/10 hover:bg-white/5"}`}
+                >
+                  العربية
+                </button>
+            </div>
            </div>
-           <div className="flex gap-2">
-              <button
-                onClick={() => handleLanguageChange("fa")}
-                className={`flex-1 text-[10px] py-1 rounded-lg border transition-all ${locale === "fa" ? "bg-primary text-white border-primary" : "border-white/10 hover:bg-white/5"}`}
-              >
-                فارسی
-              </button>
-              <button
-                onClick={() => handleLanguageChange("en")}
-                className={`flex-1 text-[10px] py-1 rounded-lg border transition-all ${locale === "en" ? "bg-primary text-white border-primary" : "border-white/10 hover:bg-white/5"}`}
-              >
-                English
-              </button>
-              <button
-                onClick={() => handleLanguageChange("ar")}
-                className={`flex-1 text-[10px] py-1 rounded-lg border transition-all ${locale === "ar" ? "bg-primary text-white border-primary" : "border-white/10 hover:bg-white/5"}`}
-              >
-                العربية
-              </button>
+
+           {/* Theme Switcher */}
+           <div>
+            <div className="flex items-center gap-3 mb-2">
+                <span className="icon-[solar--moon-bold-duotone] w-5 h-5 text-primary/70" />
+                <span className="text-sm font-bold text-foreground/80">حالت نمایش</span>
+            </div>
+            <div className="flex gap-2 p-1 bg-white/5 rounded-xl border border-white/10">
+                <button
+                  onClick={() => setTheme("light")}
+                  className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-lg transition-all text-[10px] font-bold ${theme === "light" ? "bg-white text-black shadow-sm" : "text-muted-foreground hover:bg-white/5"}`}
+                >
+                  <span className="icon-[solar--sun-bold-duotone] w-4 h-4" />
+                  روز
+                </button>
+                <button
+                  onClick={() => setTheme("dark")}
+                  className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-lg transition-all text-[10px] font-bold ${theme === "dark" ? "bg-slate-800 text-white shadow-sm" : "text-muted-foreground hover:bg-white/5"}`}
+                >
+                  <span className="icon-[solar--moon-bold-duotone] w-4 h-4" />
+                  شب
+                </button>
+                <button
+                  onClick={() => setTheme("system")}
+                  className={`flex-1 flex items-center justify-center gap-2 py-1.5 rounded-lg transition-all text-[10px] font-bold ${theme === "system" ? "bg-white/10 text-foreground" : "text-muted-foreground hover:bg-white/5"}`}
+                >
+                  <span className="icon-[solar--monitor-bold-duotone] w-4 h-4" />
+                  سیستم
+                </button>
+            </div>
            </div>
         </div>
       </div>
@@ -89,13 +129,17 @@ export const ProfileMenu = () => {
            </div>
            <span className="bg-primary/10 text-primary text-[10px] px-1.5 py-0.5 rounded-md font-bold">12</span>
         </Link>
+        <Link href="/analytics" className="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/5 transition-colors group">
+           <span className="icon-[solar--chart-bold-duotone] w-5 h-5 text-primary/70 group-hover:text-primary" />
+           <span className="text-sm font-bold text-foreground/80">آمار و تحلیل‌ها</span>
+        </Link>
       </div>
 
       {/* Footer */}
       <div className="p-2">
         <button
           onClick={async () => {
-            await authClient.signOut();
+            await authApi.signOut();
             router.push("/auth");
           }}
           className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-destructive/10 transition-colors group text-right"

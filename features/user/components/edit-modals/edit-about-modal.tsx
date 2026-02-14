@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { useUserStore } from "../../lib/store";
 import { useState } from "react";
 import { toast } from "sonner";
+import { profileApi } from "../../api/profile";
 
 export function EditAboutModal({ initialData }: { initialData: any }) {
   const { activeModal, closeModal } = useUserStore();
@@ -23,13 +24,7 @@ export function EditAboutModal({ initialData }: { initialData: any }) {
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/user/profile", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ bio: data.bio }),
-      });
-
-      if (!response.ok) throw new Error("Failed to update profile");
+      await profileApi.updateProfile(data);
 
       toast.success("درباره من با موفقیت بروزرسانی شد");
       closeModal();

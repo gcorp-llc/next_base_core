@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { useUserStore } from "../../lib/store";
 import { useState } from "react";
 import { toast } from "sonner";
+import { profileApi } from "../../api/profile";
 
 export function EditEducationModal({ initialData }: { initialData: any }) {
   const { activeModal, closeModal } = useUserStore();
@@ -26,15 +27,9 @@ export function EditEducationModal({ initialData }: { initialData: any }) {
       // For simplicity, we'll store education as a formatted string in the list
       const eduString = `${data.school} - ${data.degree} (${data.year})`;
 
-      const response = await fetch("/api/user/profile", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          education: [eduString] // In a real app, we'd append to existing list
-        }),
+      await profileApi.updateProfile({
+        education: [eduString] // In a real app, we'd append to existing list
       });
-
-      if (!response.ok) throw new Error("Failed to update");
 
       toast.success("سوابق تحصیلی بروزرسانی شد");
       closeModal();

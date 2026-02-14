@@ -14,6 +14,7 @@ import { EventModal } from "./modals/event-modal";
 import { toast } from "sonner";
 import { useUpload } from "@/hooks/use-upload";
 import { authClient } from "@/features/auth/lib/auth-client";
+import { postsApi } from "../api";
 
 export function CreatePost() {
   const t = useTranslations("HomePage");
@@ -45,13 +46,10 @@ export function CreatePost() {
         uploadedUrls = results.filter(r => r.success).map(r => r.url as string);
     }
 
-    // API call to /api/proxy/posts
-    console.log("Posting:", {
+    // API call via postsApi
+    await postsApi.createPost({
         content,
-        visibility,
-        attachments: uploadedUrls,
-        pollData,
-        eventData
+        image_url: uploadedUrls[0] // Simplified for now
     });
 
     toast.success("پست با موفقیت منتشر شد");
