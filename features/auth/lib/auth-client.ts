@@ -1,9 +1,27 @@
-import { createAuthClient } from "better-auth/react";
-import { phoneNumberClient } from "better-auth/client/plugins";
-
-export const authClient = createAuthClient({
-    plugins: [
-        phoneNumberClient()
-    ],
-    baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://localhost:3000",
-});
+// Mocking authClient for visual purposes only
+export const authClient = {
+    useSession: () => ({
+        data: {
+            user: {
+                id: "1",
+                name: "کاربر زتب",
+                email: "info@zeteb.com",
+                image: "/favicon.png",
+            }
+        },
+        isPending: false
+    }),
+    signIn: {
+        email: async () => ({ success: true }),
+    },
+    signUp: {
+        email: async () => ({ success: true }),
+    },
+    signOut: async () => {
+        window.location.href = "/auth";
+    },
+    phoneNumber: {
+        sendOtp: async () => ({ success: true }),
+        verify: async () => ({ success: true }),
+    }
+} as any;
