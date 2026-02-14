@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { useUserStore } from "../../lib/store";
 import { useState } from "react";
 import { toast } from "sonner";
+import { profileApi } from "../../api/profile";
 
 export function EditSkillsModal({ initialData }: { initialData: any }) {
   const { activeModal, closeModal } = useUserStore();
@@ -36,13 +37,7 @@ export function EditSkillsModal({ initialData }: { initialData: any }) {
   const saveAll = async () => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/user/profile", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ skills }),
-      });
-
-      if (!response.ok) throw new Error("Failed to update");
+      await profileApi.updateProfile({ skills });
 
       toast.success("مهارت‌ها بروزرسانی شد");
       closeModal();

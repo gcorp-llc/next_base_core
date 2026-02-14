@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PostList } from "@/features/feed/components/post-list";
 import { CreatePost } from "@/features/posts/components/create-post";
+import { SidebarAd } from "@/features/ads/components/sidebar-ad";
 import { FollowButton } from "@/features/social/components/follow-button";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -124,6 +125,8 @@ export default function HomePage() {
 
         {/* Right Sidebar - Widgets */}
         <aside className="lg:col-span-3 space-y-6">
+          <SidebarAd />
+
           <div className="glass-card space-y-4">
             <h4 className="font-bold text-sm">{t("topSpecialties")}</h4>
             <div className="flex flex-wrap gap-2">

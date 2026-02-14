@@ -11,6 +11,7 @@ import { ProfileAbout } from "@/features/user/components/profile-about";
 import { ProfileActivity } from "@/features/user/components/profile-activity";
 import { ProfileEducation } from "@/features/user/components/profile-education";
 import { ProfileContact } from "@/features/user/components/profile-contact";
+import { ProfileClinics } from "@/features/clinics/components/profile-clinics";
 import { Link } from "@/i18n/navigation";
 import { EditHeaderModal } from "@/features/user/components/edit-modals/edit-header-modal";
 import { EditAboutModal } from "@/features/user/components/edit-modals/edit-about-modal";
@@ -19,6 +20,7 @@ import { EditSkillsModal } from "@/features/user/components/edit-modals/edit-ski
 import { EditContactModal } from "@/features/user/components/edit-modals/edit-contact-modal";
 import { useUserStore } from "@/features/user/lib/store";
 import { useQuery } from "@tanstack/react-query";
+import { profileApi } from "@/features/user/api/profile";
 
 export default function ProfilePage() {
   const { openModal } = useUserStore();
@@ -27,11 +29,7 @@ export default function ProfilePage() {
 
   const { data: profile, isLoading } = useQuery({
     queryKey: ["user-profile"],
-    queryFn: async () => {
-      const res = await fetch("/api/user/profile");
-      if (!res.ok) throw new Error("Failed to fetch profile");
-      return res.json();
-    }
+    queryFn: () => profileApi.getProfile()
   });
 
   // Fallback to mock data if not loaded or error
@@ -89,6 +87,7 @@ export default function ProfilePage() {
         </div>
 
         <div className="space-y-6">
+          <ProfileClinics />
           <ProfileContact addresses={userData.addresses} isOwner={isOwner} />
           <div className="glass-card space-y-4">
             <h3 className="font-bold text-lg">مهارت‌ها</h3>

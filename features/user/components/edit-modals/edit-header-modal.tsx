@@ -11,6 +11,7 @@ import { useUserStore } from "../../lib/store";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { useState } from "react";
+import { profileApi } from "../../api/profile";
 
 export function EditHeaderModal({ initialData }: { initialData: any }) {
   const { activeModal, closeModal } = useUserStore();
@@ -25,17 +26,11 @@ export function EditHeaderModal({ initialData }: { initialData: any }) {
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/user/profile", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.name,
-          specialty: data.specialty,
-          location: data.location
-        }),
+      await profileApi.updateProfile({
+        name: data.name,
+        specialty: data.specialty,
+        location: data.location
       });
-
-      if (!response.ok) throw new Error("Failed to update profile");
 
       toast.success("اطلاعات با موفقیت بروزرسانی شد");
       closeModal();
