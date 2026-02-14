@@ -4,7 +4,7 @@ import { scyllaAdapter } from "./scylla-adapter";
 import { sms } from "@/lib/sms";
 
 export const auth = betterAuth({
-    database: scyllaAdapter,
+    database: () => scyllaAdapter as any,
 
     emailAndPassword: {
         enabled: true
