@@ -41,7 +41,7 @@ Error: MISSING_MESSAGE: Could not resolve `PostEditor.event` in messages for loc
   code: 'MISSING_MESSAGE',
   originalMessage: 'Could not resolve `PostEditor.event` in messages for locale `fa`.'
 }
- GET /favicon.ico 200 in 559ms (compile: 112ms, render: 447ms)
+ GET /favicon.png 200 in 559ms (compile: 112ms, render: 447ms)
 Error: MISSING_MESSAGE: Could not resolve `PostEditor.event` in messages for locale `fa`.
     at EventModal (features/posts/components/modals/event-modal.tsx:32:14)
   30 |   return (
@@ -54,7 +54,7 @@ Error: MISSING_MESSAGE: Could not resolve `PostEditor.event` in messages for loc
   code: 'MISSING_MESSAGE',
   originalMessage: 'Could not resolve `PostEditor.event` in messages for locale `fa`.'
 }
- GET /favicon.ico 200 in 253ms (compile: 81ms, render: 172ms)
+ GET /favicon.png 200 in 253ms (compile: 81ms, render: 172ms)
 ⨯ Error: Tiptap Error: SSR has been detected, please set `immediatelyRender` explicitly to `false` to avoid hydration mismatches.
     at ArticleEditor (features/posts/components/article-editor.tsx:22:27)
   20 |   const router = useRouter();
@@ -79,7 +79,7 @@ Error: MISSING_MESSAGE: Could not resolve `PostEditor.event` in messages for loc
   code: 'MISSING_MESSAGE',
   originalMessage: 'Could not resolve `PostEditor.event` in messages for locale `fa`.'
 }
- GET /favicon.ico 200 in 257ms (compile: 42ms, render: 215ms)
+ GET /favicon.png 200 in 257ms (compile: 42ms, render: 215ms)
 Error: MISSING_MESSAGE: Could not resolve `PostEditor.event` in messages for locale `fa`.
     at EventModal (features/posts/components/modals/event-modal.tsx:32:14)
   30 |   return (
@@ -105,7 +105,7 @@ Error: MISSING_MESSAGE: Could not resolve `PostEditor.event` in messages for loc
   code: 'MISSING_MESSAGE',
   originalMessage: 'Could not resolve `PostEditor.event` in messages for locale `fa`.'
 }
- GET /favicon.ico 200 in 226ms (compile: 57ms, render: 169ms)
+ GET /favicon.png 200 in 226ms (compile: 57ms, render: 169ms)
 Error: MISSING_MESSAGE: Could not resolve `PostEditor.event` in messages for locale `fa`.
     at EventModal (features/posts/components/modals/event-modal.tsx:32:14)
   30 |   return (
@@ -118,7 +118,7 @@ Error: MISSING_MESSAGE: Could not resolve `PostEditor.event` in messages for loc
   code: 'MISSING_MESSAGE',
   originalMessage: 'Could not resolve `PostEditor.event` in messages for locale `fa`.'
 }
- GET /favicon.ico 200 in 217ms (compile: 46ms, render: 171ms)
+ GET /favicon.png 200 in 217ms (compile: 46ms, render: 171ms)
  GET /fa/posts/new/article 200 in 553ms (compile: 121ms, proxy.ts: 5ms, render: 426ms)
 Error: MISSING_MESSAGE: Could not resolve `PostEditor.event` in messages for locale `fa`.
     at EventModal (features/posts/components/modals/event-modal.tsx:32:14)
@@ -132,12 +132,12 @@ Error: MISSING_MESSAGE: Could not resolve `PostEditor.event` in messages for loc
   code: 'MISSING_MESSAGE',
   originalMessage: 'Could not resolve `PostEditor.event` in messages for locale `fa`.'
 }
- GET /favicon.ico 200 in 304ms (compile: 44ms, render: 260ms)
+ GET /favicon.png 200 in 304ms (compile: 44ms, render: 260ms)
 ✓ Compiled in 82ms
 ✓ Compiled in 76ms
 ✓ Compiled in 63ms
  GET /fa 200 in 647ms (compile: 166ms, proxy.ts: 6ms, render: 476ms)
- GET /favicon.ico 200 in 274ms (compile: 44ms, render: 229ms)
+ GET /favicon.png 200 in 274ms (compile: 44ms, render: 229ms)
 ○ Compiling /api/auth/[...auth] ...
 [Error [BetterAuthError]: Failed to initialize database adapter]
 ⨯ unhandledRejection: [Error [BetterAuthError]: Failed to initialize database adapter]
@@ -145,9 +145,9 @@ Error: MISSING_MESSAGE: Could not resolve `PostEditor.event` in messages for loc
 ⨯ [Error [BetterAuthError]: Failed to initialize database adapter]
  GET /api/auth/get-session 500 in 5.4s (compile: 5.4s, render: 44ms)
 Unhandled Rejection: [Error [BetterAuthError]: Failed to initialize database adapter]
- GET /favicon.ico 200 in 533ms (compile: 114ms, render: 419ms)
+ GET /favicon.png 200 in 533ms (compile: 114ms, render: 419ms)
  GET /fa/posts/new/article 200 in 522ms (compile: 228ms, proxy.ts: 6ms, render: 288ms)
 ⨯ [Error [BetterAuthError]: Failed to initialize database adapter]
  GET /api/auth/get-session 500 in 71ms (compile: 63ms, render: 8ms)
- GET /favicon.ico 200 in 357ms (compile: 74ms, render: 283ms)
+ GET /favicon.png 200 in 357ms (compile: 74ms, render: 283ms)
 Unhandled Rejection: [Error [BetterAuthError]: Failed to initialize database adapter]

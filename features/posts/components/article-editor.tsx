@@ -55,7 +55,7 @@ export function ArticleEditor() {
       <div className="flex items-center justify-between sticky top-20 z-10 glass-nav p-4 rounded-[2rem] border border-white/10">
         <div className="flex items-center gap-3">
             <Avatar className="w-10 h-10 rounded-lg">
-                <AvatarImage src={session?.user?.image || "/favicon.ico"} />
+                <AvatarImage src={session?.user?.image || "/favicon.png"} />
                 <AvatarFallback>{session?.user?.name?.[0] || "U"}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-0.5">

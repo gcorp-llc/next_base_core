@@ -23,7 +23,7 @@ export const ProfileMenu = () => {
       <div className="p-4 border-b border-white/10 bg-white/5">
         <div className="flex items-center gap-3">
           <Avatar className="h-14 w-14 ring-2 ring-primary/20">
-            <AvatarImage src={session?.user?.image || "/favicon.ico"} />
+            <AvatarImage src={session?.user?.image || "/favicon.png"} />
             <AvatarFallback className="bg-ios-gradient text-white font-black">
               {session?.user?.name?.[0] || "U"}
             </AvatarFallback>

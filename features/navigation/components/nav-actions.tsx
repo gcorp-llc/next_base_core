@@ -25,7 +25,7 @@ export const NavActions = () => {
             <DropdownMenuTrigger asChild>
                 <div className="flex items-center cursor-pointer rounded-full p-0.5 ring-2 ring-primary/20 hover:ring-primary/40 transition-all select-none">
                     <Avatar className="h-9 w-9">
-                        <AvatarImage src="/favicon.ico" />
+                        <AvatarImage src="/favicon.png" />
                         <AvatarFallback>JD</AvatarFallback>
                     </Avatar>
                 </div>

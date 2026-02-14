@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   description: "توضیحات برنامه شما – می‌توانید بعداً داینامیک کنید",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.png",
     // بهتر است apple-touch-icon و manifest هم اضافه شود
     apple: "/apple-touch-icon.png",
   },
@@ -95,7 +95,7 @@ export default async function RootLayout({
     "@type": "Organization",
     "name": "Zeteb",
     "url": process.env.BETTER_AUTH_URL,
-    "logo": `${process.env.BETTER_AUTH_URL}/favicon.ico`,
+    "logo": `${process.env.BETTER_AUTH_URL}/favicon.png`,
   };
 
   return (
@@ -110,7 +110,7 @@ export default async function RootLayout({
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
 
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.png" type="image/x-icon" />
         {/* پیشنهاد: اضافه کردن preconnect برای فونت اگر از CDN بود */}
         {/* <link rel="preconnect" href="https://fonts..." /> */}
       </head>

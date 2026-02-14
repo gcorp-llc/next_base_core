@@ -71,7 +71,7 @@ export function CreatePost() {
     <div className="glass-card !p-4 mb-4">
       <div className="flex gap-3 mb-4">
         <Avatar className="w-12 h-12 rounded-xl">
-          <AvatarImage src={session?.user?.image || "/favicon.ico"} />
+          <AvatarImage src={session?.user?.image || "/favicon.png"} />
           <AvatarFallback>{session?.user?.name?.[0] || "U"}</AvatarFallback>
         </Avatar>
         <button
@@ -114,7 +114,7 @@ export function CreatePost() {
         <div className="space-y-4 pt-4">
           <div className="flex items-center gap-3">
             <Avatar className="w-10 h-10 rounded-lg">
-              <AvatarImage src={session?.user?.image || "/favicon.ico"} />
+              <AvatarImage src={session?.user?.image || "/favicon.png"} />
               <AvatarFallback>{session?.user?.name?.[0] || "U"}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-1">

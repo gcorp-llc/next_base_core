@@ -14,7 +14,7 @@ export function PostItem({ post }: PostItemProps) {
         <div className="flex justify-between items-start">
           <div className="flex gap-3">
             <Avatar className="h-12 w-12">
-              <AvatarImage src="/favicon.ico" />
+              <AvatarImage src="/favicon.png" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <div>

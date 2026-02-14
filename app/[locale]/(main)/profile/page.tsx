@@ -42,7 +42,7 @@ export default function ProfilePage() {
     location: profile?.location || "تهران، ایران",
     bio: profile?.bio || "بیش از ۱۰ سال سابقه در درمان بیماری‌های داخلی و مدیریت سلامت بیماران. مشاور ارشد در بیمارستان‌های تراز اول.",
     coverImage: profile?.cover_image || "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200",
-    avatarImage: "/favicon.ico",
+    avatarImage: "/favicon.png",
     connections: profile?.connections || 1250,
     analytics: {
       profileViews: profile?.analytics_views || 425,
